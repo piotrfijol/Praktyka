@@ -12,8 +12,12 @@ body {
   justify-content: center;
   align-items: center;
 }
+.header__logo {
+  transform: translateX(30px);
+}
+
 .main {
-  width: 375px;
+  width: 100%;
   margin: 0 auto;
   text-transform: uppercase;
   font-weight: bold;
@@ -21,32 +25,31 @@ body {
 }
 .main__title {
   margin-top: 54px;
+  margin-bottom: 55px;
   font-size: 23px;
   color: #172F49;
   text-align: center;
 }
 .main__content {
   box-sizing: border-box;
-  height: calc(100vh - 188px);
+  height: calc(100vh - 243px);
   min-height: 330px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
 }
 .main__inbound_scan, .main__outbound_scan {
   width: 237px;
   height: 69px;
+  margin: auto;
   box-sizing: border-box;
   color: #FFF;
   display: flex;
   align-items: center;
-  padding: 1.2em;
+  padding: 15px 25px;
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 35px;
   border-style: none;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.16);
 }
 .main__inbound_scan:hover, .main__outbound_scan:hover {
   cursor: pointer;
@@ -57,10 +60,11 @@ body {
 .main__inbound_scan__icon {
   width: 29px;
   height: 35px;
-  margin-right: 0.7em;
+  margin-right: 14px;
 }
 .main__outbound_scan {
   background-color: #172F49;
+  margin-top: 150px;
 }
 .main__outbound_scan__icon {
   width: 36px;
@@ -73,13 +77,17 @@ body {
   width: 100vw;
   display: flex;
   background-color: #FFF;
-  padding: 0 22px;
+  padding-left: 40px;
+  padding-right: 22px;
   box-sizing: border-box;
 }
 .nav > * {
   width: 50%;
   display: flex;
   align-items: center;
+}
+.nav__left_icon {
+  justify-content: flex-start;
 }
 .nav__right_icon {
   justify-content: flex-end;

@@ -13,12 +13,12 @@ body {
     align-items: center;
 
     &__logo {
-        
+        transform: translateX(30px);
     }
 }
 
 .main {
-    width: 375px;
+    width: 100%;
     margin: 0 auto;
     text-transform: uppercase;
     font-weight: bold;
@@ -26,6 +26,7 @@ body {
 
     &__title {
         margin-top: 54px;
+        margin-bottom: 55px;
         font-size: 23px;
         color: #172F49;
         text-align: center;
@@ -33,27 +34,25 @@ body {
 
     &__content {
         box-sizing: border-box;
-        height: calc(100vh - 188px);
+        height: calc(100vh - 243px);
         min-height: 330px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
     }
 
     &__inbound_scan, &__outbound_scan {
         width: 237px;
         height: 69px;
+        margin: auto;
         box-sizing: border-box;
         color: #FFF;
         display: flex;
         align-items: center;
-        padding: 1.2em;
+        padding: 15px 25px;
         font-size: 16px;
         font-weight: bold;
         text-transform: uppercase;
         border-radius: 35px;
         border-style: none;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.16);
     }   
 
     &__inbound_scan:hover, &__outbound_scan:hover {
@@ -66,13 +65,14 @@ body {
         &__icon {
             width: 29px;
             height: 35px;
-            margin-right: .7em;
+            margin-right: 14px;
         }
     }
 
 
     &__outbound_scan {
         background-color: #172F49;
+        margin-top: 150px;
         
         &__icon {
             width: 36px;
@@ -87,7 +87,8 @@ body {
     width: 100vw;
     display: flex;
     background-color: #FFF;
-    padding: 0 22px;
+    padding-left: 40px;
+    padding-right: 22px;
     box-sizing: border-box;
 
     & > * {
@@ -97,7 +98,7 @@ body {
     }
 
     &__left_icon {
-
+        justify-content: flex-start;
     }
 
     &__right_icon {
