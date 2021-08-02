@@ -13,7 +13,6 @@ body {
   align-items: center;
 }
 .main {
-  height: 100vh;
   width: 375px;
   margin: 0 auto;
   text-transform: uppercase;
@@ -28,7 +27,7 @@ body {
 }
 .main__content {
   box-sizing: border-box;
-  height: calc(100vh - 112px);
+  height: calc(100vh - 188px);
   min-height: 330px;
   display: flex;
   flex-direction: column;
@@ -48,6 +47,9 @@ body {
   text-transform: uppercase;
   border-radius: 35px;
   border-style: none;
+}
+.main__inbound_scan:hover, .main__outbound_scan:hover {
+  cursor: pointer;
 }
 .main__inbound_scan {
   background-color: #00A0D4;
