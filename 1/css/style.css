@@ -98,6 +98,10 @@ body {
   background-color: #00A0D4;
   color: #FFF;
 }
+.scanner__wrapper {
+  width: 329px;
+  margin: auto;
+}
 .scanner__title {
   padding-top: 20px;
   text-align: center;
@@ -117,13 +121,14 @@ body {
   text-transform: uppercase;
 }
 .scanner__qr__info {
-  width: 329px;
+  width: 100%;
   border: 1px solid #FFF;
   margin: auto;
   margin-top: 40px;
   position: relative;
   font-size: 20px;
   padding: 20px;
+  box-sizing: border-box;
 }
 .scanner__qr__title {
   position: absolute;
@@ -141,22 +146,34 @@ body {
   display: flex;
   margin-top: 13px;
 }
-.scanner__qr__label:first-child {
-  marign-top: 30px;
-}
 .scanner__qr__label {
   text-transform: none;
 }
 .scanner__qr__label::after {
-  content: ":";
-  margin-right: 1ch;
+  content: "";
+  margin-right: 2px;
 }
 .scanner__qr__details {
   font-weight: 700;
 }
 .scanner__barcode {
-  margin-top: 140px;
+  margin-top: 49px;
+  width: 100%;
+}
+.scanner__barcode__title {
+  font-weight: 400;
+}
+.scanner__barcode__caption {
+  margin-top: 146px;
   color: rgba(255, 255, 255, 0.35);
+}
+.scanner__barcode__input {
+  margin-top: 27px;
+  border: 2px solid #FFF;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px 13px;
+  box-sizing: border-box;
 }
 
 a {
