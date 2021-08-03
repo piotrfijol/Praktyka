@@ -160,6 +160,8 @@ body {
 .scanner__barcode {
   margin-top: 49px;
   width: 100%;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
 }
 .scanner__barcode__title {
   font-weight: 400;
@@ -180,6 +182,13 @@ body {
   font-weight: 700;
   color: #FFF;
   text-align: right;
+}
+.scanner__barcode__input::-webkit-outer-spin-button, .scanner__barcode__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.scanner__barcode__input[type=number] {
+  -moz-appearance: textfield;
 }
 .scanner__barcode__save_btn {
   display: block;
