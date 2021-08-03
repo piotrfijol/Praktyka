@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/reset.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -58,8 +58,8 @@
             <p class="scanner__barcode__title">
                 Scan location barcode now
             </p>
-            <input type="number" class="scanner__barcode__input" required>
-            <button class="scanner__barcode__save_btn disabled">SAVE</button>
+            <input id="barcode-scanner" type="number" class="scanner__barcode__input" required>
+            <button id="barcode-save-btn" class="scanner__barcode__save_btn disabled">SAVE</button>
         </div>
         </div>
     </main>
@@ -71,5 +71,15 @@
             <img src="./assets/images/svg/logout.svg" alt="">
         </div>
     </nav>
+    <script>
+        const input = document.getElementById('barcode-scanner');
+        const saveBtn = document.getElementById('barcode-save-btn')
+        input.addEventListener('input', ev => {
+            if(ev.target.value !== '')
+                saveBtn.classList.remove('disabled');
+            else
+                saveBtn.classList.add('disabled');
+        });
+    </script>
 </body>
 </html>
