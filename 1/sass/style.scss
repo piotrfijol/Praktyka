@@ -2,7 +2,9 @@
 @use 'partials/nav';
 
 
-$main-background: #00A0D4;
+$scanner-dominant-color: #00A0D4;
+$scanner-secondary-color: #FFF;
+$scanner-accent-color: #8BBD3A;
 
 body {
     margin: 0;
@@ -37,7 +39,7 @@ body {
         height: 69px;
         margin: auto;
         box-sizing: border-box;
-        color: #FFF;
+        color: $scanner-secondary-color;
         display: flex;
         align-items: center;
         padding: 15px 25px;
@@ -54,7 +56,7 @@ body {
     }
 
     &__inbound_scan {
-        background-color: $main-background;
+        background-color: $scanner-dominant-color;
 
         &__icon {
             width: 29px;
@@ -78,8 +80,9 @@ body {
 
 .scanner {
     @extend .main;
-    background-color: $main-background;
-    color: #FFF;
+    background-color: $scanner-dominant-color;
+    color: $scanner-secondary-color;
+    overflow: auto;
 
     &__wrapper {
         width: 329px;
@@ -87,7 +90,7 @@ body {
     }
 
     &__title {
-        padding-top: 20px;
+        margin-top: 28px;
         text-align: center;
         font-size: 23px;
         font-family: 'Open sans', sans-serif;
@@ -103,12 +106,12 @@ body {
     }
 
     &__qr {
-        margin-top: 22px;
+        margin-top: 43px;
         text-transform: uppercase;
 
         &__info {
             width: 100%;
-            border: 1px solid #FFF;
+            border: 1px solid $scanner-secondary-color;
             margin: auto;
             margin-top: 40px;
             position: relative;
@@ -123,7 +126,7 @@ body {
             top: -1px;
             line-height: 1px;
             padding: 0 10px;
-            background-color: $main-background;
+            background-color: $scanner-dominant-color;
         }
 
         &__data {
@@ -133,7 +136,7 @@ body {
 
         &__row {
             display: flex;
-            margin-top: 13px;
+            margin-top: 7px;
         }
 
         &__label {
@@ -164,12 +167,54 @@ body {
         }
 
         &__input {
-            margin-top: 27px;
-            border: 2px solid #FFF;
-            background-color: transparent;
             width: 100%;
-            padding: 10px 13px;
+            padding: 2px 13px;
             box-sizing: border-box;
+            margin-top: 26px;
+            border: 2px solid $scanner-secondary-color;
+            background-color: transparent;
+            font-family: 'Open sans';
+            font-size: 35px;
+            font-weight: 700;
+            color: #FFF;
+            text-align: right;;
+        }
+
+        &__save_btn {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 51px;
+            border-style: none;
+            font-size: 57px;
+            font-family: 'Open sans', sans-serif;
+            font-weight: 700;
+            color: $scanner-secondary-color;
+            background-color: $scanner-accent-color;
+            margin-top: 50px;
+            padding: 12px 0;
+            position: relative;
+        }
+
+        &__save_btn:hover {
+            cursor: pointer;
+        }
+
+        &__save_btn::after {
+            content: '';
+            border-radius: 58px;
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            top: -11px;
+            left: -11px;
+            width: 106.3%;
+            height: 120.5%;
+            border: 5px solid $scanner-accent-color;
+        }
+
+        .disabled {
+            opacity: .31;
         }
     }
     
