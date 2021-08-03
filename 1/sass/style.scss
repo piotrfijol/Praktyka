@@ -1,6 +1,9 @@
 @use 'partials/header';
 @use 'partials/nav';
 
+
+$main-background: #00A0D4;
+
 body {
     margin: 0;
     padding: 0;
@@ -51,7 +54,7 @@ body {
     }
 
     &__inbound_scan {
-        background-color: #00A0D4;
+        background-color: $main-background;
 
         &__icon {
             width: 29px;
@@ -75,14 +78,14 @@ body {
 
 .scanner {
     @extend .main;
-    background-color: #00A0D4;
+    background-color: $main-background;
     color: #FFF;
 
     &__title {
         padding-top: 20px;
         text-align: center;
         font-size: 23px;
-        font-family: 'Open sans';
+        font-family: 'Open sans', sans-serif;
         font-weight: 700;
     }
 
@@ -96,6 +99,53 @@ body {
 
     &__qr {
         margin-top: 22px;
+        text-transform: uppercase;
+
+        &__info {
+            width: 329px;
+            border: 1px solid #FFF;
+            margin: auto;
+            margin-top: 40px;
+            position: relative;
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        &__title {
+            position: absolute;
+            left: 9px;
+            top: -1px;
+            line-height: 1px;
+            padding: 0 10px;
+            background-color: $main-background;
+        }
+
+        &__data {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__row {
+            display: flex;
+            margin-top: 13px;
+        }
+  
+        &__label:first-child {
+            marign-top: 30px;
+        }
+
+        &__label {
+            text-transform: none;
+        }
+
+        &__label::after {
+            content: ':';
+            margin-right: 1ch;
+        }
+
+        &__details {
+            font-weight: 700;;
+        }
     }
 
     &__barcode {
@@ -103,4 +153,8 @@ body {
         color: rgba(255, 255, 255, 0.35);
     }
     
+}
+
+a {
+    text-decoration: none;
 }
