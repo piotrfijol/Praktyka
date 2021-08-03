@@ -128,7 +128,7 @@ body {
   margin-top: 40px;
   position: relative;
   font-size: 20px;
-  padding: 20px;
+  padding: 18px;
   box-sizing: border-box;
 }
 .scanner__qr__title {
@@ -151,7 +151,7 @@ body {
   text-transform: none;
 }
 .scanner__qr__label::after {
-  content: "";
+  content: ":";
   margin-right: 2px;
 }
 .scanner__qr__details {
