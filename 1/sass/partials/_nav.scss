@@ -1,8 +1,10 @@
+@use '../variables';
+
 .nav {
     height: 61px;
     width: 100vw;
     display: flex;
-    background-color: #FFF;
+    background-color: variables.$scanner-secondary-color;
     padding-left: 40px;
     padding-right: 22px;
     box-sizing: border-box;

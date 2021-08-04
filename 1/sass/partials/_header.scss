@@ -1,8 +1,9 @@
+@use '../variables';
 
 .header {
     height: 50px;
     width: 100vw;
-    background-color: #FFF;
+    background-color: variables.$scanner-secondary-color;
     display: flex;
     justify-content: center;
     align-items: center;

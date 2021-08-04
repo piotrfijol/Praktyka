@@ -1,0 +1,100 @@
+@use '../variables';
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    height: calc(100vh - 111px);  
+    background-color: variables.$scanner-dominant-color;
+    overflow: auto;
+
+    .wrapper {
+        width: 329px;
+        margin: auto;
+    }
+}
+
+.main.choice-screen-background {
+    background-color: #F4F4F4;
+}
+
+.title {
+    font-size: 23px;
+    font-weight: 700;
+    text-align: center;
+    color:#172F49;
+}
+
+.title--white {
+    color: variables.$scanner-secondary-color;
+}
+
+.title--mar-small {
+    margin-top: 25px;
+}
+
+.title--mar-medium {
+    margin-top: 54px;
+}
+
+.buttons {
+    box-sizing: border-box;
+    min-height: 330px;
+    margin-top: 61px;
+}
+
+.inbound_scan, .outbound_scan {
+    width: 237px;
+    height: 69px;
+    margin: auto;
+    box-sizing: border-box;
+    color: variables.$scanner-secondary-color;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 35px;
+    border-style: none;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.16);
+}   
+
+.inbound_scan:hover, .outbound_scan:hover {
+    cursor: pointer;
+}
+
+.inbound_scan {
+    background-color: variables.$scanner-dominant-color;
+
+    &__icon {
+        width: 29px;
+        height: 35px;
+        margin-right: 14px;
+    }
+}
+
+.outbound_scan {
+    background-color: #172F49;
+    margin-top: 150px;
+    
+    &__icon {
+        width: 36px;
+        height: 35px;
+        margin-right: .5em;
+    }
+}
+
+
+a {
+    text-decoration: none;
+}
