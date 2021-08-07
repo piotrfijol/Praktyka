@@ -1,3 +1,3 @@
 module.exports = {
-	publicPath: '/Praktyka/2/todo-app'
+	publicPath: '/Praktyka/'
 }
