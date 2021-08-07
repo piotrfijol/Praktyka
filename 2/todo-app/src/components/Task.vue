@@ -30,7 +30,7 @@ export default {
     },
     computed: {
         dateFormatted: function() {
-            return moment(this.date).format("MMM, Do YYYY | HH:MM:SS");
+            return moment(this.date).format("MMM, Do YYYY | HH:mm:ss");
         }
     }
 }
