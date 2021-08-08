@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Wash the dishes",
+        "date": "Sat Aug 07 2021 17:42:36 GMT+0200",
+        "isDone": false
+    },
+    {
+        "id": 2,
+        "name": "Do the shopping",
+        "date": "Sat Aug 07 2021 15:42:36 GMT+0200",
+        "isDone": false
+    }
+]

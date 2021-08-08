@@ -14,6 +14,7 @@ export default {
         return {
             newTask: {
                 name: '',
+                isDone: false
             }
         }
     },
@@ -25,6 +26,10 @@ export default {
         },
         addTask() {
             this.$emit('addTask', this.newTask);
+            this.newTask = {
+                name: '',
+                isDone: false
+            }
         }
     },
 }
