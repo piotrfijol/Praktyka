@@ -1,14 +1,14 @@
 <template>
-    <div class="task d-flex justify-content-between pr-5 mb-2" :class="isDone ? 'task-done' : ''">
-        <div class="info d-flex flex-column text-start pr-4">
+    <div class="task d-flex justify-content-between mb-2" :class="isDone ? 'task-done' : ''">
+        <div class="info d-flex flex-column text-start p-3">
             <p class="text-secondary date">Added on {{ dateFormatted }}</p>
             <p class="text-break">{{ title ? title : '...' }}</p>
         </div>
-        <div class="buttons d-flex align-items-center">
+        <div class="buttons d-flex align-items-center p-3">
             <div class="form-check form-switch">
                 <input @click="$emit('toggle', taskId)" class="form-check-input" type="checkbox" v-model="isDone" />
             </div>
-            <button @click="$emit('remove', taskId)" class="btn btn-danger"><img class="cross-icon" src="../assets/close.svg" alt=""></button>
+            <button @click="removeTask" class="btn btn-danger"><img class="cross-icon" src="../assets/close.svg" alt=""></button>
         </div>
     </div>
 </template>
@@ -36,8 +36,18 @@ export default {
         }
     },
     methods: {
-        toggleStatus() {
-            this.is
+        decreaseSize(el) {
+            el.style.height = parseInt(window.getComputedStyle(el, null).height)-4 + "px";
+            if(parseInt(window.getComputedStyle(el, null).height) > 5) {
+                window.requestAnimationFrame(this.decreaseSize.bind(null, el));
+            } else {
+                this.$emit('remove', this.taskId);
+            }
+        },
+        removeTask(ev) {
+            let task = ev.currentTarget.parentNode.parentNode;
+            task.style.visibility = "hidden";
+            window.requestAnimationFrame(this.decreaseSize.bind(null, task))
         }
     }
 }
@@ -45,13 +55,17 @@ export default {
 
 <style scoped>
     .task {
-        padding: 1em;
+        box-sizing: border-box;
         max-width: 800px;
         border-radius: 5px;
         box-shadow: 0px 1px 3px #777;
         margin: 0 auto;
         word-wrap: break-word;
         background-color: #FFF;
+    }
+
+    .task:hover {
+        cursor: grab;
     }
 
     .date {
