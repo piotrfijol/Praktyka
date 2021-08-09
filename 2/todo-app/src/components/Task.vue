@@ -19,7 +19,6 @@ import moment from 'moment';
 export default {
     name: 'task',
     data() {
-        console.log(this.taskStatus)
         return {
             isDone: this.taskStatus
         }
@@ -37,7 +36,7 @@ export default {
     },
     methods: {
         decreaseSize(el) {
-            el.style.height = parseInt(window.getComputedStyle(el, null).height)-4 + "px";
+            el.style.height = parseInt(window.getComputedStyle(el, null).height)-8 + "px";
             if(parseInt(window.getComputedStyle(el, null).height) > 5) {
                 window.requestAnimationFrame(this.decreaseSize.bind(null, el));
             } else {
@@ -45,9 +44,11 @@ export default {
             }
         },
         removeTask(ev) {
+            if(confirm(`Are you sure you want to remove ${this.title} task?`)) {
             let task = ev.currentTarget.parentNode.parentNode;
             task.style.visibility = "hidden";
             window.requestAnimationFrame(this.decreaseSize.bind(null, task))
+            }
         }
     }
 }

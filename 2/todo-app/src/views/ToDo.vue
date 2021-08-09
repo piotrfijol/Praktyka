@@ -32,11 +32,15 @@
         name: 'todo',
         data() {
             return {
-                tasks: []
+                tasks: [],
+                snapshots: []
             }
         },
         created() {
             this.downloadData();
+        },
+        beforeUpdate() {
+            this.takeSnapShot();
         },
         updated() {
             this.saveData();
@@ -47,8 +51,10 @@
             AddTask
         },
         methods: {
+            takeSnapShot() {
+            },
             addTask({ name, isDone }) {
-                this.tasks.push({
+                this.tasks.unshift({
                     id: Math.floor(Math.random()*10000),
                     date: new Date(),
                     name,
