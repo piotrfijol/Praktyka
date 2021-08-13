@@ -2,20 +2,17 @@
     <div class="container">
         <add-task @addTask="addTask" />
         
-        <tasks v-if="tasks.length" >
+        <tasks :isLoading="isLoading">
             <task  
                 v-bind:key="task.id" 
                 v-for="task in tasks" 
                 @remove="removeTask"
                 @toggle="toggleStatus"
-                :taskId="task.id" 
-                :title="task.name" 
-                :taskStatus="task.isDone"
-                :date="task.date"
+                :task="task"
             />
         </tasks>
-        <div v-else>
-            <p>You don't have anything to do! 😎</p>
+        <div v-if="!tasks.length && !isLoading">
+            <p>No tasks found.</p>
         </div>
         
     </div>
@@ -25,7 +22,7 @@
     import Tasks from '../components/Tasks.vue';
     import Task from '../components/Task.vue';
     import AddTask from '../components/AddTask.vue';
-    import tasksData from '../../default-tasks.json';
+    import moment from 'moment';
 
 
     export default {
@@ -33,17 +30,11 @@
         data() {
             return {
                 tasks: [],
-                snapshots: []
+                isLoading: true
             }
         },
         created() {
             this.downloadData();
-        },
-        beforeUpdate() {
-            this.takeSnapShot();
-        },
-        updated() {
-            this.saveData();
         },
         components: {
             Tasks,
@@ -51,43 +42,66 @@
             AddTask
         },
         methods: {
-            takeSnapShot() {
-            },
-            addTask({ name, isDone }) {
-                this.tasks.unshift({
-                    id: Math.floor(Math.random()*10000),
-                    date: new Date(),
-                    name,
-                    isDone
-                })
+            addTask({ title, isDone }) {
+                let date = new Date();
+                let newTask = {
+                    created_at: moment(date).format("YYYY-MM-DD HH:mm:ss"),
+                    title,
+                    is_done: isDone ? 1 : 0
+                }
+                fetch('http://localhost:8888/tasks', {
+                    mode: 'cors',
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newTask),
+                }).then((data) => data.json())
+                .then(dataParsed => {
+                    this.tasks.push({
+                        id: dataParsed.id,
+                        ...newTask
+                    });
+                });
             },
             removeTask(taskId) {
+                fetch('http://localhost:8888/tasks/' + taskId, {
+                    method: 'DELETE'
+                })
                 this.tasks = this.tasks.filter(task => task.id != taskId);
             },
             toggleStatus(taskId) {
-                let idInArr = -1;
-                this.tasks.forEach((task, id) => {
+                let newVal = false;
+                this.tasks.forEach((task) => {
                     if(task.id === taskId) {
-                        idInArr = id;
+                        task.is_done = (newVal = !task.is_done);
                     }
                 });
 
-                let task = {
-                    ...this.tasks[idInArr]
-                }
-                task.isDone = !task.isDone;
-                this.tasks = this.tasks.slice(0, idInArr).concat(task, this.tasks.slice(idInArr+1));
+                fetch('http://localhost:8888/tasks/' + taskId, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "is_done": newVal ? 1 : 0
+                    })
+                })
+                .catch(err => console.error(err));
             },
-            downloadData() {
-                if(!localStorage.getItem('tasks'))
-                    this.tasks = [...tasksData];
-                else {
-                    this.tasks = JSON.parse(localStorage.getItem('tasks'));
-                }
+            async downloadData() {
+                this.tasks = await fetch('http://localhost:8888/tasks')
+                .then(data => {
+
+                    if(data.status !== 200)
+                        return new Error("Problem with database connection");
+                    
+                    this.isLoading = false;
+                    return data.json();
+                })
+                .catch(err => console.error(err));
             },
-            saveData() {
-                localStorage.setItem('tasks', JSON.stringify(this.tasks));
-            }
         }
     }
 

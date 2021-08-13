@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
         <div class="input-group mb-5">
-            <input  @keypress="handleKeyPress" v-model="newTask.name" type="text" class="form-control py-3" placeholder="New task">
+            <input  @keypress="handleKeyPress" v-model="newTask.title" type="text" class="form-control py-3" placeholder="New task">
             <button @click="addTask" class="btn btn-success px-4" type="button" id="button-addon2">Add</button>
         </div>
     </div>
@@ -13,7 +13,7 @@ export default {
     data() {
         return {
             newTask: {
-                name: '',
+                title: '',
                 isDone: false
             }
         }
@@ -27,7 +27,7 @@ export default {
         addTask() {
             this.$emit('addTask', this.newTask);
             this.newTask = {
-                name: '',
+                title: '',
                 isDone: false
             }
         }

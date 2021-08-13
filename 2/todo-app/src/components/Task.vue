@@ -1,12 +1,12 @@
 <template>
-    <div class="task d-flex justify-content-between mb-2" :class="isDone ? 'task-done' : ''">
+    <div class="task d-flex justify-content-between mb-2" :class="task.is_done ? 'task-done' : ''">
         <div class="info d-flex flex-column text-start p-3">
             <p class="text-secondary date">Added on {{ dateFormatted }}</p>
-            <p class="text-break">{{ title ? title : '...' }}</p>
+            <p class="text-break">{{ task.title ? task.title : '...' }}</p>
         </div>
         <div class="buttons d-flex align-items-center p-3">
             <div class="form-check form-switch">
-                <input @click="$emit('toggle', taskId)" class="form-check-input" type="checkbox" v-model="isDone" />
+                <input class="form-check-input" type="checkbox" :checked="task.is_done" @input="handleInput" @click="$emit('toggle', task.id)" />
             </div>
             <button @click="removeTask" class="btn btn-danger"><img class="cross-icon" src="../assets/close.svg" alt=""></button>
         </div>
@@ -18,20 +18,12 @@ import moment from 'moment';
 
 export default {
     name: 'task',
-    data() {
-        return {
-            isDone: this.taskStatus
-        }
-    },
     props: {
-        taskId: Number,
-        title: String,
-        taskStatus: Boolean,
-        date: Date
+        task: Object
     },
     computed: {
         dateFormatted: function() {
-            return moment(this.date).format("MMM, Do YYYY | HH:mm:ss");
+            return moment(this.task.created_at).format("MMM, Do YYYY | HH:mm:ss");
         }
     },
     methods: {
@@ -40,15 +32,16 @@ export default {
             if(parseInt(window.getComputedStyle(el, null).height) > 5) {
                 window.requestAnimationFrame(this.decreaseSize.bind(null, el));
             } else {
-                this.$emit('remove', this.taskId);
+                this.$emit('remove', this.task.id);
             }
         },
         removeTask(ev) {
-            if(confirm(`Are you sure you want to remove ${this.title} task?`)) {
             let task = ev.currentTarget.parentNode.parentNode;
             task.style.visibility = "hidden";
-            window.requestAnimationFrame(this.decreaseSize.bind(null, task))
-            }
+            window.requestAnimationFrame(this.decreaseSize.bind(null, task));
+        },
+        handleInput(ev) {
+            ev.target.checked = this.task.is_done;
         }
     }
 }
