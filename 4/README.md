@@ -2,7 +2,7 @@ Start MySQL server, create database called 'todoapp'.
 
 (Assuming that you're in Praktyka/4 directory) 
 Type in this command: 
-`yii/migrate`
+`yii migrate`
 
 Start server:
 `php yii serve --port=8888`
