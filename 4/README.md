@@ -1,7 +1,8 @@
 Start MySQL server, create database called 'todoapp'.
 
 (Assuming that you're in Praktyka/4 directory) 
-Type in this command: 
+Type in this commands:
+`composer install`
 `yii migrate`
 
 Start server:
