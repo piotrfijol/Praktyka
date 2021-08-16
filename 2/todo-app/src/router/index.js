@@ -1,3 +1,5 @@
+
+
 import { createRouter, createWebHistory } from "vue-router";
 import Home from '../views/Home';
 import ToDo from '../views/ToDo';
@@ -16,7 +18,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory('/Praktyka/2/todo-app/dist/'),
     routes
 });
 

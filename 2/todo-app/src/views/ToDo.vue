@@ -23,7 +23,8 @@
     import Task from '../components/Task.vue';
     import AddTask from '../components/AddTask.vue';
     import moment from 'moment';
-
+    require('dotenv').config();
+    console.log(process.env);
 
     export default {
         name: 'todo',
@@ -49,7 +50,7 @@
                     title,
                     is_done: isDone ? 1 : 0
                 }
-                fetch('http://localhost:8888/tasks', {
+                fetch(process.env.VUE_APP_API_URL, {
                     mode: 'cors',
                     method: 'POST',
                     headers: {
@@ -66,7 +67,7 @@
                 });
             },
             removeTask(taskId) {
-                fetch('http://localhost:8888/tasks/' + taskId, {
+                fetch(process.env.VUE_APP_API_URL + `/${taskId}`, {
                     method: 'DELETE'
                 })
                 this.tasks = this.tasks.filter(task => task.id != taskId);
@@ -79,7 +80,7 @@
                     }
                 });
 
-                fetch('http://localhost:8888/tasks/' + taskId, {
+                fetch(process.env.VUE_APP_API_URL + `/${taskId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -91,7 +92,7 @@
                 .catch(err => console.error(err));
             },
             async downloadData() {
-                this.tasks = await fetch('http://localhost:8888/tasks')
+                this.tasks = await fetch(process.env.VUE_APP_API_URL)
                 .then(data => {
 
                     if(data.status !== 200)
