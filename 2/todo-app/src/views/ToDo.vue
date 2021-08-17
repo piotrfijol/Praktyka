@@ -24,7 +24,6 @@
     import AddTask from '../components/AddTask.vue';
     import moment from 'moment';
     require('dotenv').config();
-    console.log(process.env);
 
     export default {
         name: 'todo',
@@ -50,7 +49,7 @@
                     title,
                     is_done: isDone ? 1 : 0
                 }
-                fetch(process.env.VUE_APP_API_URL, {
+                fetch(process.env.VUE_APP_API_URL + "tasks", {
                     mode: 'cors',
                     method: 'POST',
                     headers: {
@@ -67,7 +66,7 @@
                 });
             },
             removeTask(taskId) {
-                fetch(process.env.VUE_APP_API_URL + `/${taskId}`, {
+                fetch(process.env.VUE_APP_API_URL + `tasks/${taskId}`, {
                     method: 'DELETE'
                 })
                 this.tasks = this.tasks.filter(task => task.id != taskId);
@@ -80,7 +79,7 @@
                     }
                 });
 
-                fetch(process.env.VUE_APP_API_URL + `/${taskId}`, {
+                fetch(process.env.VUE_APP_API_URL + `tasks/${taskId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -92,7 +91,7 @@
                 .catch(err => console.error(err));
             },
             async downloadData() {
-                this.tasks = await fetch(process.env.VUE_APP_API_URL)
+                this.tasks = await fetch(process.env.VUE_APP_API_URL + 'tasks')
                 .then(data => {
 
                     if(data.status !== 200)
